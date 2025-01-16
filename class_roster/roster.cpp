@@ -126,14 +126,17 @@ void Roster::parse(string studentDataString)
     }
 }
 
-//remove method
-bool Roster::remove(string studentId) {
-    for (int i = 0; i <= lastIndex; ++i) {
-        if (classRosterArray[i]->getId() == studentId) {
-            //find each student by id and then delete the student object
+// remove method
+bool Roster::remove(string studentId)
+{
+    for (int i = 0; i <= lastIndex; ++i)
+    {
+        if (classRosterArray[i]->getId() == studentId)
+        {
+            // find each student by id and then delete the student object
             delete classRosterArray[i];
             classRosterArray[i] = classRosterArray[lastIndex];
-            //decrement 
+            // decrement
             lastIndex--;
             return true;
         }
@@ -143,19 +146,52 @@ bool Roster::remove(string studentId) {
     return false;
 }
 
-//populate CRA w/student object array
-void Roster::add(string studentId, string firstName, string lastName, string emailAddress, int yearsOld, int daysCourse1, int daysCourse2, int daysCourse3, Degree degreeProgram) {
-    int days[] = { daysCourse1, daysCourse2, daysCourse3 };
+// populate CRA w/student object array
+void Roster::add(string studentId, string firstName, string lastName, string emailAddress, int yearsOld, int daysCourse1, int daysCourse2, int daysCourse3, Degree degreeProgram)
+{
+    int days[] = {daysCourse1, daysCourse2, daysCourse3};
     classRosterArray[++lastIndex] = new Student(studentId, firstName, lastName, emailAddress, yearsOld, days, degreeProgram);
 };
 
-//print CRA values w/pointers
-void Roster::printAll() const {
+// print CRA values w/pointers
+void Roster::printAll() const
+{
     cout << endl;
-    //parse student array and call print method for each one 
-    for (int i = 0; i <= lastIndex; ++i) {
+    // parse student array and call print method for each one
+    for (int i = 0; i <= lastIndex; ++i)
+    {
         classRosterArray[i]->print();
     }
+    cout << endl;
+}
+
+// print average days in course
+void Roster::printAverageDaysInCourse(string studentId) const
+{
+    for (int i = 0; i <= lastIndex; ++i)
+    {
+        if (classRosterArray[i]->getId() == studentId)
+        {
+            // assign each day with a variable
+            int day1 = classRosterArray[i]->getDays(0);
+            int day2 = classRosterArray[i]->getDays(1);
+            int day3 = classRosterArray[i]->getDays(2);
+            cout << "Average days in a course for " << studentId << " is " << (day1 + day2 + day3) / 3 << endl;
+            return;
+        }
+    }
+}
+
+// print all invalid email addresses
+void Roster::printInvalidEmails() const {
+    cout << "Invalid emails: " << endl;
+    for (int i = 0; i <= lastIndex) ++i) {
+            string email = classRosterArray[i]->getEmail();
+            // ensure email meets requirements
+            if (email.find('@') == string::npos || email.find('.') == string.npos || email.find(' ') != string::npos) {
+                cout << email << endl;
+            }
+        }
     cout << endl;
 }
 
