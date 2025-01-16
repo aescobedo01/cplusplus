@@ -195,4 +195,25 @@ void Roster::printInvalidEmails() const {
     cout << endl;
 }
 
-
+//using an if statement to print by degree program
+void Roster::printByDegreeProgram(Degree degreeProgram) const {
+    cout << endl;
+    if (degreeProgram == SECURITY) {
+        cout << "Degree program: Security " << endl;
+    }
+    else if (degreeProgram == NETWORK) {
+        cout << "Degree program: Network " << endl;
+    }
+    else if (degreeProgram == SOFTWARE) {
+        cout << "Degree program: Software " << endl;
+    }
+    else {
+        cout << "Degree not found." << endl;
+    }
+    
+    for (int i = 0; i <= lastIndex; ++i) {
+        if (classRosterArray[i]->getDegree() == degreeProgram) {
+            classRosterArray[i]->print();
+        }
+    }
+}
