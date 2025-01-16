@@ -125,3 +125,38 @@ void Roster::parse(string studentDataString)
         cout << endl;
     }
 }
+
+//remove method
+bool Roster::remove(string studentId) {
+    for (int i = 0; i <= lastIndex; ++i) {
+        if (classRosterArray[i]->getId() == studentId) {
+            //find each student by id and then delete the student object
+            delete classRosterArray[i];
+            classRosterArray[i] = classRosterArray[lastIndex];
+            //decrement 
+            lastIndex--;
+            return true;
+        }
+    }
+
+    cout << "Student with this ID not found: " << studentId << endl;
+    return false;
+}
+
+//populate CRA w/student object array
+void Roster::add(string studentId, string firstName, string lastName, string emailAddress, int yearsOld, int daysCourse1, int daysCourse2, int daysCourse3, Degree degreeProgram) {
+    int days[] = { daysCourse1, daysCourse2, daysCourse3 };
+    classRosterArray[++lastIndex] = new Student(studentId, firstName, lastName, emailAddress, yearsOld, days, degreeProgram);
+};
+
+//print CRA values w/pointers
+void Roster::printAll() const {
+    cout << endl;
+    //parse student array and call print method for each one 
+    for (int i = 0; i <= lastIndex; ++i) {
+        classRosterArray[i]->print();
+    }
+    cout << endl;
+}
+
+
