@@ -14,6 +14,7 @@ int main()
     cout << "C++" << endl;
     cout << "012202209" << endl;
     cout << "Escobedo" << endl;
+    cout << endl;
 
     // student array
     const std::string studentData[] = {

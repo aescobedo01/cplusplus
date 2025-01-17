@@ -3,16 +3,14 @@
 using namespace std;
 
 // default student constructor
-Student::Student()
-{
+Student::Student() {
     // initialize member variables
     this->studentId = "";
     this->firstName = "";
     this->lastName = "";
     this->emailAddress = "";
     this->yearsOld = 0;
-    for (int i = 0; i < 3; ++i)
-    {
+    for (int i = 0; i < 3; ++i) {
         this->daysCourse[i] = -1;
     }
     // default degree is software unless information is otherwise

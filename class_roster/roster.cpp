@@ -4,10 +4,8 @@
 using namespace std;
 
 // constructor
-Roster::Roster()
-{
-    for (int i = 0; i < 5; i++)
-    {
+Roster::Roster() {
+    for (int i = 0; i < 5; i++) {
         // each item in CRA will be assigned with new student object
         classRosterArray[i] = new Student();
     }
@@ -15,24 +13,20 @@ Roster::Roster()
 
 // destructor
 // delete each object in CRA
-Roster::~Roster()
-{
-    for (int i = 0; i < 5; ++i)
-    {
+Roster::~Roster() {
+    for (int i = 0; i < 5; ++i) {
         delete classRosterArray[i];
     }
 }
 
 // get each id from CRA
-string Roster::GetId(int index)
-{
+string Roster::GetId(int index) {
     string studentId = classRosterArray[index]->getId();
     return studentId;
 }
 
 // parse through each string in student data
-void Roster::parse(string studentDataString)
-{
+void Roster::parse(string studentDataString) {
     string studentId, firstName, lastName, emailAddress;
     int yearsOld, daysCourse1, daysCourse2, daysCourse3;
 
@@ -127,12 +121,9 @@ void Roster::parse(string studentDataString)
 }
 
 // remove method
-bool Roster::remove(string studentId)
-{
-    for (int i = 0; i <= lastIndex; ++i)
-    {
-        if (classRosterArray[i]->getId() == studentId)
-        {
+bool Roster::remove(string studentId) {
+    for (int i = 0; i <= lastIndex; ++i) {
+        if (classRosterArray[i]->getId() == studentId) {
             // find each student by id and then delete the student object
             delete classRosterArray[i];
             classRosterArray[i] = classRosterArray[lastIndex];
@@ -147,31 +138,25 @@ bool Roster::remove(string studentId)
 }
 
 // populate CRA w/student object array
-void Roster::add(string studentId, string firstName, string lastName, string emailAddress, int yearsOld, int daysCourse1, int daysCourse2, int daysCourse3, Degree degreeProgram)
-{
+void Roster::add(string studentId, string firstName, string lastName, string emailAddress, int yearsOld, int daysCourse1, int daysCourse2, int daysCourse3, Degree degreeProgram) {
     int days[] = {daysCourse1, daysCourse2, daysCourse3};
     classRosterArray[++lastIndex] = new Student(studentId, firstName, lastName, emailAddress, yearsOld, days, degreeProgram);
 };
 
 // print CRA values w/pointers
-void Roster::printAll() const
-{
+void Roster::printAll() const {
     cout << endl;
     // parse student array and call print method for each one
-    for (int i = 0; i <= lastIndex; ++i)
-    {
+    for (int i = 0; i <= lastIndex; ++i) {
         classRosterArray[i]->print();
     }
     cout << endl;
 }
 
 // print average days in course
-void Roster::printAverageDaysInCourse(string studentId) const
-{
-    for (int i = 0; i <= lastIndex; ++i)
-    {
-        if (classRosterArray[i]->getId() == studentId)
-        {
+void Roster::printAverageDaysInCourse(string studentId) const {
+    for (int i = 0; i <= lastIndex; ++i) {
+        if (classRosterArray[i]->getId() == studentId) {
             // assign each day with a variable
             int day1 = classRosterArray[i]->getDays(0);
             int day2 = classRosterArray[i]->getDays(1);
