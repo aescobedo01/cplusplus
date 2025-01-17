@@ -38,7 +38,7 @@ Student::Student(string studentid, string firstname, string lastname, string ema
 Student::~Student() {};
 
 //mutators or setters
-void Student::setID(string studentId) {
+void Student::setId(string studentId) {
     this->studentId = studentId;
 }
 void Student::setFName(string firstName) {
@@ -50,7 +50,7 @@ void Student::setLName(string lastName) {
 void Student::setEmail(string emailAddress) {
     this->emailAddress = emailAddress;
 }
-void Student::setAge(string yearsOld) {
+void Student::setAge(int yearsOld) {
     this->yearsOld = yearsOld;
 }
 
